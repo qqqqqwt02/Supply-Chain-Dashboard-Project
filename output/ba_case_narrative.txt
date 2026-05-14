@@ -1,0 +1,32 @@
+
+========================================================================
+Business analyst project demo — three cases from supply_chain_data.csv (ONLINE DATASET)
+========================================================================
+
+[Case 1] Supplier quality and revenue exposure (procurement / quality)
+— Business question: With limited audit capacity, which suppliers should we prioritize, and how do we quantify revenue tied to poor quality outcomes?
+— Definition: By Supplier name, aggregate SKU count, Fail/Pending share, mean Defect rates, total Revenue generated, and revenue on SKUs that Fail inspection.
+— Findings: Portfolio Fail rate is about 36.0%; SKUs with defect rate > 3%: 32. Highest Fail-rate supplier: Supplier 4 (Fail ~66.7%, Pending ~33.3%; revenue on Fail SKUs ~62,937).
+— Recommendations: (1) Joint quality-improvement plan with Supplier 4 and a Fail-rate target; (2) root-cause analysis on high-Fail, high-revenue SKUs (incoming material / process / spec); (3) contract quality KPIs and second-source evaluation to reduce disruption and recall risk.
+
+[Case 2] Inventory and service level (operations / planning)
+— Business question: Which SKUs face both low on-hand stock and low sell-through / availability, putting revenue and customer experience at risk?
+— Definition: Stock levels < 20 = low stock; Availability < 50% = low availability; both = dual-low risk SKU.
+— Findings: 14 dual-low SKUs with combined revenue ~95,811; mean Availability for low-stock SKUs ~52.5%, for others ~46.9% (context for stock vs availability).
+— Recommendations: (1) safety stock and replenishment cadence for dual-low, high-revenue SKUs; (2) align with demand planning on promo and seasonality; (3) SKU-level dashboard on Stock x Availability quadrants.
+   Top 5 dual-low SKUs by revenue:
+   SKU Product type  Stock levels  Availability  Revenue generated
+ SKU31     skincare             6            28        9655.135103
+  SKU2     haircare             1            34        9577.749626
+ SKU67     skincare            12            16        9473.798033
+ SKU18     haircare            10            23        9364.673505
+ SKU24     haircare             4            32        9049.077861
+
+[Case 3] Transportation mode and total logistics cost (cost optimization)
+— Business question: How do combined route/logistics cost plus shipping differ by Transportation modes, and is there a testable savings hypothesis?
+— Definition: For each row, combined = Costs + Shipping costs; mean combined by transportation mode.
+— Findings: Highest mean combined cost: Air (~568 per row); lowest: Sea (~423); spread ~145 (same currency units as the dataset).
+— Recommendations: (1) segment by volume, lead time, and value to find lanes to shift to lower-cost modes; (2) tie to quality and OTIF SLAs so cost cuts do not erode service; (3) decision tree for mode selection and pilot lanes to validate savings.
+Data trust: median |Revenue generated - Price x units| / Revenue is about 185.7%. 
+
+========================================================================
